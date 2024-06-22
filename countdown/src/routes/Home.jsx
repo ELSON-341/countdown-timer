@@ -12,7 +12,8 @@ const Home = () => {
   const [image, setImage] = useState()
   const [color, setColor] = useState()
 
-  const {setEvent} = useContext(CountdownContext)
+  const {event, setEvent} = useContext(CountdownContext)
+  console.log(event);
 
   const navigate = useNavigate()
 
@@ -26,8 +27,8 @@ const Home = () => {
       color
     }
 
-    setEvent(eventObject);
-
+    console.log(eventObject);
+    setEvent(eventObject)
     navigate('/contdown')
   }
   

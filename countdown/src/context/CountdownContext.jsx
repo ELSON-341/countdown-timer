@@ -4,9 +4,9 @@ const CountdownContext = React.createContext(null)
 
 const CountdownProvider = ({ children }) => {
     const [event, setEvent] = useState(null)
-
+    console.log(event);
     return (
-        <CountdownContext.Provider value={{ event, setEvent }}>
+        <CountdownContext.Provider value={{event, setEvent}}>
             {children}
         </CountdownContext.Provider>
     )
