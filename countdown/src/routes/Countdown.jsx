@@ -1,34 +1,39 @@
-import Title from '../components/Title'
-import Counter from '../components/counter'
-import { Navigate } from 'react-router-dom'
+import Title from "../components/Title";
+import Counter from "../components/counter";
 
-import { useContext } from 'react'
+import { useContext, useEffect } from "react";
+import { CountdownContext } from "../context/CountdownContext";
 
-import useCountdown from '../hooks/useCountdown'
-
-import { CountdownContext } from '../context/CountdownContext'
+import useCountdown from "../hooks/useCountdown";
+import { Navigate } from "react-router-dom";
 
 const Countdown = () => {
-  const {envent} = useContext(CountdownContext)
-  console.log(envent);
+  const { event } = useContext(CountdownContext);
+  console.log(event);
 
-  if(!envent) return <Navigate to="/"/>
+  if (!event) return <Navigate to="/" replace />;
 
-  const enventTitle = envent.title
+  let eventTitle = null;
 
-  const [day, hour, minute, second] = useCountdown('jan 1, 2025 00:00:00')
+  if (event.title) eventTitle = event.title;
+
+  let eventColor = null;
+
+  if (event.color) eventColor = event.color;
+
+  const [day, hour, minute, second] = useCountdown(event.date);
 
   return (
     <>
-      <Title title={enventTitle}/>
+      <Title title={eventTitle} eventColor={eventColor} />
       <div className="countdown-container">
-        <Counter title="Dias" number={day}/>
-        <Counter title="Horas" number={hour}/>
-        <Counter title="Minutos" number={minute}/>
-        <Counter title="Segundos" number={second}/>
+        <Counter title="Dias" number={day} eventColor={eventColor} />
+        <Counter title="Horas" number={hour} eventColor={eventColor} />
+        <Counter title="Minutos" number={minute} eventColor={eventColor} />
+        <Counter title="Segundos" number={second} eventColor={eventColor} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Countdown
+export default Countdown;

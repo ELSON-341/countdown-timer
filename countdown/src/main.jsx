@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
-        path: '/contdown',
+        path: "/countdown",
         element: <Countdwon/>
       }
     ]
