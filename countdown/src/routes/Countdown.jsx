@@ -9,18 +9,20 @@ import useCountdown from '../hooks/useCountdown'
 import { CountdownContext } from '../context/CountdownContext'
 
 const Countdown = () => {
-  const {envent} = useContext(CountdownContext)
-  console.log(envent);
+  const {event} = useContext(CountdownContext)
+  console.log(event);
 
-  if(!envent) return <Navigate to="/"/>
+  if(!event) return <Navigate to="/" replace/>
+  let eventTitle = null;
 
-  const enventTitle = envent.title
+  if (event.title) eventTitle = event.title;
+
 
   const [day, hour, minute, second] = useCountdown('jan 1, 2025 00:00:00')
 
   return (
     <>
-      <Title title={enventTitle}/>
+      <Title title={eventTitle}/>
       <div className="countdown-container">
         <Counter title="Dias" number={day}/>
         <Counter title="Horas" number={hour}/>
