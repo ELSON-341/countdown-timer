@@ -13,7 +13,6 @@ const Home = () => {
   const [color, setColor] = useState()
 
   const {event, setEvent} = useContext(CountdownContext)
-  console.log(event);
 
   const navigate = useNavigate()
 
@@ -27,8 +26,10 @@ const Home = () => {
       color
     }
 
-    console.log(eventObject);
     setEvent(eventObject)
+
+    console.log(eventObject.title);
+
     navigate('/contdown')
   }
   
@@ -37,7 +38,7 @@ const Home = () => {
     <form className="countdown-form" onSubmit={handleSubmit}>
       <label>
         <span>Título:</span>
-        <input type="text" name="title" placeholder="Digite seu título do evento" onChange={(e) => setTitle(e.target.value)} required/>
+        <input type="text" name="title" placeholder="Digite seu título do evento" onChange={(e) =>setTitle(e.target.value)} required/>
       </label>
       <label>
         <span>Data do evento:</span>
