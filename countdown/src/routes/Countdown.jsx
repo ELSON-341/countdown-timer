@@ -10,15 +10,15 @@ import { CountdownContext } from '../context/CountdownContext'
 
 const Countdown = () => {
   const {event} = useContext(CountdownContext)
-  console.log(event);
+  if(!event) return <Navigate to="/" />
 
-  if(!event) return <Navigate to="/" replace/>
-  let eventTitle = null;
+  let eventTitle = null
+  if(event.title) eventTitle = event.title
+  
+  let eventColor = null
+  if(event.color) eventColor = event.color
 
-  if (event.title) eventTitle = event.title;
-
-
-  const [day, hour, minute, second] = useCountdown('jan 1, 2025 00:00:00')
+  const [day, hour, minute, second] = useCountdown(event.date)
 
   return (
     <>
