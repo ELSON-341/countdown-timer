@@ -27,9 +27,6 @@ const Home = () => {
     }
 
     setEvent(eventObject)
-
-    console.log(eventObject.title);
-
     navigate('/contdown')
   }
   
